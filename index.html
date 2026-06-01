@@ -39,6 +39,7 @@ nav.transparent .cta-btn,nav.scrolled .cta-btn{color:#fff;border-color:#fff}
 .hero-bg{position:absolute;inset:0;z-index:0}
 .hero-bg img{width:100%;height:100%;object-fit:cover}
 .hero-bg::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,.38)}
+.hero-canvas{position:absolute;inset:0;z-index:1;pointer-events:none}
 .hero-content{position:relative;z-index:2;width:100%;max-width:1200px;margin:0 auto;padding:0 60px}
 @media(max-width:768px){.hero-content{padding:0 24px}}
 .hero h2{color:#fff;font-size:clamp(34px,5vw,60px);font-weight:600;line-height:1.2;margin-bottom:12px}
@@ -58,16 +59,15 @@ nav.transparent .cta-btn,nav.scrolled .cta-btn{color:#fff;border-color:#fff}
 /* ACCORDION */
 .ac-wrap{max-width:1300px;margin:0 auto;padding:0 60px 80px}
 @media(max-width:768px){.ac-wrap{padding:0 24px 50px}}
-.ac{display:flex;gap:13px;height:320px;width:100%}
+.ac{display:flex;gap:13px;height:284px;width:100%}
 @media(max-width:1024px){.ac{flex-direction:column;height:auto}}
-.ac-item{background-size:cover;background-position:center;border-radius:18px;color:#fff;cursor:pointer;height:320px;overflow:hidden;position:relative;transition:width .6s ease;width:180px;flex-shrink:0}
-.ac-item::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.5),transparent 50%);z-index:1;border-radius:18px}
-.ac-item.open{width:700px}
-.ac-item .ac-t{position:absolute;bottom:30px;left:30px;font-size:26px;font-weight:600;z-index:3;transition:all .4s ease;white-space:nowrap}
-.ac-item .ac-d{position:absolute;bottom:30px;left:30px;font-size:16px;font-weight:400;line-height:1.8;width:400px;opacity:0;z-index:3;transition:all .6s ease}
-.ac-item.open .ac-t{bottom:80px}
-.ac-item.open .ac-d{bottom:24px;opacity:.9}
-@media(max-width:1024px){.ac-item{width:100%!important;height:160px}.ac-item.open{height:300px}.ac-item .ac-t{bottom:20px;left:20px;font-size:22px}.ac-item.open .ac-t{bottom:70px}.ac-item .ac-d{bottom:20px;left:20px;font-size:15px;width:auto;right:20px}.ac-item.open .ac-d{bottom:16px}}
+.ac-item{background-size:cover;background-position:center;border-radius:18px;color:#fff;cursor:pointer;height:284px;overflow:hidden;position:relative;transition:width .8s ease;width:240px;flex-shrink:0}
+.ac-item::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.45),rgba(0,0,0,.1));z-index:1;border-radius:18px}
+.ac-item.open{width:626px;transition:width .3s ease}
+.ac-item .ac-t{position:relative;z-index:3;font-size:30px;font-weight:600;margin-left:40px;margin-top:42px;letter-spacing:.02em;line-height:1}
+.ac-item .ac-d{position:relative;z-index:3;font-size:20px;font-weight:400;line-height:31px;margin-left:40px;margin-top:30px;width:248px;opacity:0;transition:opacity 1.2s ease}
+.ac-item.open .ac-d{opacity:.59}
+@media(max-width:1024px){.ac-item{width:100%!important;height:160px}.ac-item.open{height:280px}.ac-item .ac-t{font-size:24px;margin-left:24px;margin-top:24px}.ac-item .ac-d{font-size:16px;margin-left:24px;margin-top:16px;width:auto;right:24px}}
 
 /* STATS */
 .stats-bar{background:#0a0e1a;padding:50px 0}
@@ -116,8 +116,6 @@ nav.transparent .cta-btn,nav.scrolled .cta-btn{color:#fff;border-color:#fff}
 .card-body .tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px}
 .tags span{padding:4px 10px;background:#f5f5f5;border-radius:6px;font-size:12px;color:#666}
 .case-tag{display:inline-block;padding:4px 10px;background:#e5efff;color:#0a5fff;font-size:12px;font-weight:600;border-radius:6px;margin-bottom:8px;align-self:flex-start}
-.case-result{margin-top:12px;padding-top:12px;border-top:1px solid #eee;font-size:20px;font-weight:700;color:#b8975a}
-
 /* SECTIONS BG */
 .bg-white{background:#fff}
 .bg-light{background:#f8f9fb}
@@ -176,6 +174,7 @@ footer .fa{color:rgba(255,255,255,.18);font-size:12px}
 <!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-bg"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=85" alt="" loading="eager"></div>
+  <canvas class="hero-canvas" id="heroCanvas"></canvas>
   <div class="hero-content">
     <h2>让每一家制造企业<br>拥有专业级企业服务保障</h2>
     <h3>深耕知识产权 · 专注制造业服务</h3>
@@ -253,10 +252,10 @@ footer .fa{color:rgba(255,255,255,.18);font-size:12px}
   <div class="sec">
     <div class="st reveal"><h2>信任来自每一次成功交付</h2><p>部分脱敏案例展示，覆盖四大制造业领域</p></div>
     <div class="card-grid stagger">
-      <div class="card"><img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=500&q=80" alt="" loading="lazy"><div class="card-body"><span class="case-tag">电气行业</span><h4>某电气设备制造企业</h4><p class="cd">完成发明专利12项、实用新型28项系统性专利布局，辅助通过高企认定。</p><div class="case-result">100% 通过率</div></div></div>
-      <div class="card"><img src="https://images.unsplash.com/photo-1580674684081-7617fbf3d745?w=500&q=80" alt="" loading="lazy"><div class="card-body"><span class="case-tag">汽摩配行业</span><h4>某汽车零部件集团</h4><p class="cd">三年持续服务，累计申报技改补贴、专精特新等项目超20项，获批资金逾800万。</p><div class="case-result">100% 通过率</div></div></div>
-      <div class="card"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&q=80" alt="" loading="lazy"><div class="card-body"><span class="case-tag">五金制造</span><h4>某精密五金加工企业</h4><p class="cd">商标全类注册+外观专利组合，帮助企业成功阻击3起侵权，挽回损失超200万。</p><div class="case-result">100% 通过率</div></div></div>
-      <div class="card"><img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=500&q=80" alt="" loading="lazy"><div class="card-body"><span class="case-tag">鞋服行业</span><h4>某品牌鞋业公司</h4><p class="cd">从零搭建知产保护体系，2年内完成商标45类全覆盖+核心外观专利群+版权登记。</p><div class="case-result">100% 通过率</div></div></div>
+      <div class="card"><img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=500&q=80" alt="" loading="lazy"><div class="card-body"><span class="case-tag">电气行业</span><h4>某电气设备制造企业</h4><p class="cd">完成发明专利12项、实用新型28项系统性专利布局，辅助通过高企认定。</p><!-- --></div></div>
+      <div class="card"><img src="https://images.unsplash.com/photo-1580674684081-7617fbf3d745?w=500&q=80" alt="" loading="lazy"><div class="card-body"><span class="case-tag">汽摩配行业</span><h4>某汽车零部件集团</h4><p class="cd">三年持续服务，累计申报技改补贴、专精特新等项目超20项，获批资金逾800万。</p><!-- --></div></div>
+      <div class="card"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&q=80" alt="" loading="lazy"><div class="card-body"><span class="case-tag">五金制造</span><h4>某精密五金加工企业</h4><p class="cd">商标全类注册+外观专利组合，帮助企业成功阻击3起侵权，挽回损失超200万。</p><!-- --></div></div>
+      <div class="card"><img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=500&q=80" alt="" loading="lazy"><div class="card-body"><span class="case-tag">鞋服行业</span><h4>某品牌鞋业公司</h4><p class="cd">从零搭建知产保护体系，2年内完成商标45类全覆盖+核心外观专利群+版权登记。</p><!-- --></div></div>
     </div>
   </div>
 </section>
@@ -327,6 +326,9 @@ document.querySelectorAll('.sb-num[data-target]').forEach(el=>cObs.observe(el));
 
 // Form
 function handleSubmit(e){e.preventDefault();const btn=e.target.querySelector('button'),orig=btn.textContent;btn.textContent='已收到，会尽快联系您！';btn.style.background='#0ea06a';setTimeout(()=>{btn.textContent=orig;btn.style.background='';e.target.reset();},3000);}
+
+// Canvas particle animation
+(function(){const c=document.getElementById('heroCanvas');if(!c)return;const ctx=c.getContext('2d');let w,h,ps=[];const N=80;function rs(){w=c.width=c.parentElement.offsetWidth;h=c.height=c.parentElement.offsetHeight}rs();window.addEventListener('resize',rs);for(let i=0;i<N;i++)ps.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4-.2,r:Math.random()*1.5+.5,o:Math.random()*.5+.15});function dr(){ctx.clearRect(0,0,w,h);ps.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=w;if(p.x>w)p.x=0;if(p.y<0)p.y=h;if(p.y>h)p.y=0;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(255,255,255,'+p.o+')';ctx.fill();ps.forEach(p2=>{const dx=p.x-p2.x,dy=p.y-p2.y,dist=Math.sqrt(dx*dx+dy*dy);if(dist<120){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(p2.x,p2.y);ctx.strokeStyle='rgba(255,255,255,'+(.04*(1-dist/120))+')';ctx.lineWidth=.5;ctx.stroke()}})});requestAnimationFrame(dr);dr();})();
 </script>
 </body>
 </html>
