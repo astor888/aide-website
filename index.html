@@ -115,6 +115,22 @@ nav.transparent .cta-btn,nav.scrolled .cta-btn{color:#fff;border-color:#fff}
 .card-body .tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:auto;padding-top:12px}
 .tags span{padding:4px 10px;background:#f5f5f5;border-radius:6px;font-size:12px;color:#666}
 .case-tag{display:inline-block;padding:4px 10px;background:#e5efff;color:#0a5fff;font-size:12px;font-weight:600;border-radius:6px;margin-bottom:8px;align-self:flex-start;flex-shrink:0}
+
+/* CASE MARQUEE */
+.case-marquee{overflow:hidden;position:relative;padding:10px 0}
+.cm-row{display:flex;gap:30px;animation:marquee 40s linear infinite}
+.cm-row:hover{animation-play-state:paused}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.cm-card{flex-shrink:0;width:340px;background:#fff;border-radius:28px;padding:40px 32px;box-shadow:0 2px 24px rgba(0,0,0,.04);transition:all .35s ease;display:flex;flex-direction:column;align-items:center;text-align:center}
+.cm-card:hover{box-shadow:0 20px 60px rgba(0,0,0,.1);transform:translateY(-8px)}
+.cm-avatar{width:110px;height:110px;border-radius:50%;overflow:hidden;margin-bottom:22px;flex-shrink:0;background:#f0f0f0}
+.cm-avatar img{width:100%;height:100%;object-fit:cover}
+.cm-info h4{font-size:20px;font-weight:600;color:#111;margin-bottom:10px}
+.cm-info p{font-size:15px;color:#888;line-height:1.8}
+@media(max-width:768px){.cm-card{width:280px;padding:28px 24px}}
+.cs-arr:hover{background:#0a5fff;border-color:#0a5fff;color:#fff}
+@media(max-width:768px){.cm-card,.cm-card.round{width:120px;height:100px}.cm-card.round{width:100px;height:100px}.cm-card.rect{border-radius:16px}}
+
 /* SECTIONS BG */
 .bg-white{background:#fff}
 .bg-light{background:#f8f9fb}
@@ -246,15 +262,21 @@ footer .fa{color:rgba(255,255,255,.18);font-size:12px}
   </div>
 </section>
 
-<!-- CASES -->
-<section id="cases" class="bg-white">
+<!-- CASES MARQUEE -->
+<section id="cases" class="bg-light">
   <div class="sec">
-    <div class="st reveal"><h2>信任来自每一次成功交付</h2><p>部分脱敏案例展示，覆盖四大制造业领域</p></div>
-    <div class="card-grid stagger">
-      <div class="card"><img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=500&q=80" alt="" loading="lazy"><div class="card-body"><span class="case-tag">电气行业</span><h4>某电气设备制造企业</h4><p class="cd">完成发明专利12项、实用新型28项系统性专利布局，辅助通过高企认定。</p><!-- --></div></div>
-      <div class="card"><img src="https://images.unsplash.com/photo-1580674684081-7617fbf3d745?w=500&q=80" alt="" loading="lazy"><div class="card-body"><span class="case-tag">汽摩配行业</span><h4>某汽车零部件集团</h4><p class="cd">三年持续服务，累计申报技改补贴、专精特新等项目超20项，获批资金逾800万。</p><!-- --></div></div>
-      <div class="card"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&q=80" alt="" loading="lazy"><div class="card-body"><span class="case-tag">五金制造</span><h4>某精密五金加工企业</h4><p class="cd">商标全类注册+外观专利组合，帮助企业成功阻击3起侵权，挽回损失超200万。</p><!-- --></div></div>
-      <div class="card"><img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=500&q=80" alt="" loading="lazy"><div class="card-body"><span class="case-tag">鞋服行业</span><h4>某品牌鞋业公司</h4><p class="cd">从零搭建知产保护体系，2年内完成商标45类全覆盖+核心外观专利群+版权登记。</p><!-- --></div></div>
+    <div class="st reveal"><h2>信任来自每一次成功交付</h2><p>部分合作客户展示，覆盖四大制造业领域</p></div>
+    <div class="case-marquee reveal">
+      <div class="cm-row" id="cmRow">
+        <div class="cm-card"><div class="cm-avatar"><img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=150&q=80" alt="" loading="lazy"></div><div class="cm-info"><h4>某电气设备制造企业</h4><p>发明专利12项 · 实用新型28项</p></div></div>
+        <div class="cm-card"><div class="cm-avatar"><img src="https://images.unsplash.com/photo-1580674684081-7617fbf3d745?w=150&q=80" alt="" loading="lazy"></div><div class="cm-info"><h4>某汽车零部件集团</h4><p>项目申报20+项 · 获批逾800万</p></div></div>
+        <div class="cm-card"><div class="cm-avatar"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=80" alt="" loading="lazy"></div><div class="cm-info"><h4>某精密五金加工企业</h4><p>阻击侵权3起 · 挽回损失200万</p></div></div>
+        <div class="cm-card"><div class="cm-avatar"><img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=150&q=80" alt="" loading="lazy"></div><div class="cm-info"><h4>某品牌鞋业公司</h4><p>商标45类全覆盖 · 知产体系搭建</p></div></div>
+        <div class="cm-card"><div class="cm-avatar"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=150&q=80" alt="" loading="lazy"></div><div class="cm-info"><h4>某大型制造集团</h4><p>年申报50+项 · 战略合作伙伴</p></div></div>
+        <div class="cm-card"><div class="cm-avatar"><img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=150&q=80" alt="" loading="lazy"></div><div class="cm-info"><h4>某电子科技公司</h4><p>专利导航 · 知产贯标辅导</p></div></div>
+        <div class="cm-card"><div class="cm-avatar"><img src="https://images.unsplash.com/photo-1580674684081-7617fbf3d745?w=150&q=80" alt="" loading="lazy"></div><div class="cm-info"><h4>某自动化设备企业</h4><p>高企认定 · 研发费用加计扣除</p></div></div>
+        <div class="cm-card"><div class="cm-avatar"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=80" alt="" loading="lazy"></div><div class="cm-info"><h4>某新材料制造企业</h4><p>首台套认定 · 技改补贴申报</p></div></div>
+      </div>
     </div>
   </div>
 </section>
@@ -322,6 +344,9 @@ document.querySelectorAll('.reveal,.stagger').forEach(el=>obs.observe(el));
 // Counter
 const cObs=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(!entry.isIntersecting)return;const el=entry.target,t=parseInt(el.dataset.target),d=2000,s=performance.now();const em=el.querySelector('em');const eh=em?em.outerHTML:'';function upd(now){const p=Math.min((now-s)/d,1),e=1-Math.pow(1-p,3);el.innerHTML=Math.floor(e*t)+eh;if(p<1)requestAnimationFrame(upd);else el.innerHTML=t+eh;}requestAnimationFrame(upd);cObs.unobserve(el);});},{threshold:.5});
 document.querySelectorAll('.sb-num[data-target]').forEach(el=>cObs.observe(el));
+
+// Marquee clone
+(function(){const r=document.getElementById('cmRow');if(r){r.innerHTML=r.innerHTML+r.innerHTML;}})();
 
 // Form
 function handleSubmit(e){e.preventDefault();const btn=e.target.querySelector('button'),orig=btn.textContent;btn.textContent='已收到，会尽快联系您！';btn.style.background='#0ea06a';setTimeout(()=>{btn.textContent=orig;btn.style.background='';e.target.reset();},3000);}
