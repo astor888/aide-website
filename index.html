@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>艾德知识产权 — 制造业企业服务专家</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans SC','PingFang SC',sans-serif;color:#333;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#f5f5f5}
+::-webkit-scrollbar-thumb{background:#ccc;border-radius:3px}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 60px;height:64px;transition:all .3s}
+nav.transparent{background:transparent}
+nav.transparent .logo,nav.transparent .nl a{color:#fff}
+nav.scrolled{background:rgba(0,0,0,.2);backdrop-filter:blur(25px)}
+nav.scrolled .logo,nav.scrolled .nl a{color:#fff}
+.logo{font-size:18px;font-weight:600;color:#333;text-decoration:none;display:flex;align-items:center;gap:8px}
+.logo em{font-style:normal;width:34px;height:34px;background:linear-gradient(135deg,#b8975a,#d4bc8b);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:15px;color:#fff}
+.nl{display:flex;list-style:none;gap:30px;align-items:center}
+.nl a{color:#333;text-decoration:none;font-size:15px;transition:color .3s}
+.nl a:hover{color:#0a5fff}
+.nl .nt{color:#999!important;font-size:14px}
+.cta-btn{color:#fff;text-decoration:none;font-size:15px;font-weight:500;padding:8px 22px;border:1.5px solid #fff;border-radius:100px;transition:all .3s}
+nav.transparent .cta-btn,nav.scrolled .cta-btn{color:#fff;border-color:#fff}
+.cta-btn:hover{background:#fff;color:#000!important}
+.mt{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer}
+.mt span{display:block;width:22px;height:2px;background:#fff;transition:.3s}
+@media(max-width:768px){nav{padding:0 24px}.nl{display:none}.mt{display:flex}}
+
+/* HERO */
+.hero{position:relative;height:100vh;min-height:650px;overflow:hidden;display:flex;align-items:center}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover}
+.hero-bg::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,.38)}
+.hero-content{position:relative;z-index:2;width:100%;max-width:1200px;margin:0 auto;padding:0 60px}
+@media(max-width:768px){.hero-content{padding:0 24px}}
+.hero h2{color:#fff;font-size:clamp(34px,5vw,60px);font-weight:600;line-height:1.2;margin-bottom:12px}
+.hero h3{color:rgba(255,255,255,.8);font-size:clamp(16px,2vw,24px);font-weight:300;letter-spacing:6px;margin-bottom:48px}
+.hero .start-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;width:280px;height:68px;background:linear-gradient(135deg,#0a5fff,#3b8bff);border:none;border-radius:100px;color:#fff;font-size:19px;font-weight:500;cursor:pointer;text-decoration:none;transition:all .4s cubic-bezier(.34,1.56,.64,1)}
+.hero .start-btn:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(10,95,255,.4)}
+.hero .start-btn .ar{transition:transform .3s}
+.hero .start-btn:hover .ar{transform:translateX(6px)}
+
+/* SECTION TITLE */
+.st{text-align:center;margin-bottom:50px}
+.st h2{font-size:clamp(26px,3.5vw,40px);font-weight:600;letter-spacing:.02em;line-height:1.2;margin-bottom:12px;background:linear-gradient(90deg,#1a1a1a 25%,#0a5fff 55%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.st p{font-size:16px;color:#999;max-width:560px;margin:0 auto;line-height:1.8}
+.sec{padding:80px 60px;max-width:1200px;margin:0 auto}
+@media(max-width:768px){.sec{padding:50px 24px}}
+
+/* ACCORDION */
+.ac-wrap{max-width:1300px;margin:0 auto;padding:0 60px 80px}
+@media(max-width:768px){.ac-wrap{padding:0 24px 50px}}
+.ac{display:flex;gap:13px;height:320px;width:100%}
+@media(max-width:1024px){.ac{flex-direction:column;height:auto}}
+.ac-item{background-size:cover;background-position:center;border-radius:18px;color:#fff;cursor:pointer;height:320px;overflow:hidden;position:relative;transition:width .6s ease;width:180px;flex-shrink:0}
+.ac-item::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.5),transparent 50%);z-index:1;border-radius:18px}
+.ac-item.open{width:700px}
+.ac-item .ac-t{position:absolute;bottom:30px;left:30px;font-size:26px;font-weight:600;z-index:3;transition:all .4s ease;white-space:nowrap}
+.ac-item .ac-d{position:absolute;bottom:30px;left:30px;font-size:16px;font-weight:400;line-height:1.8;width:400px;opacity:0;z-index:3;transition:all .6s ease}
+.ac-item.open .ac-t{bottom:80px}
+.ac-item.open .ac-d{bottom:24px;opacity:.9}
+@media(max-width:1024px){.ac-item{width:100%!important;height:160px}.ac-item.open{height:300px}.ac-item .ac-t{bottom:20px;left:20px;font-size:22px}.ac-item.open .ac-t{bottom:70px}.ac-item .ac-d{bottom:20px;left:20px;font-size:15px;width:auto;right:20px}.ac-item.open .ac-d{bottom:16px}}
+
+/* STATS */
+.stats-bar{background:#0a0e1a;padding:50px 0}
+.sb-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-around;padding:0 60px;flex-wrap:wrap;gap:30px}
+.sb-item{text-align:center}
+.sb-num{font-size:clamp(36px,5vw,52px);font-weight:700;color:#fff;line-height:1}
+.sb-num em{font-size:22px;color:#b8975a;margin-left:4px;font-style:normal}
+.sb-label{font-size:15px;color:rgba(255,255,255,.45);margin-top:8px}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+@media(max-width:1024px){.about-grid{grid-template-columns:1fr;gap:30px}}
+.about-grid img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.1)}
+.about-text h3{font-size:28px;font-weight:600;margin-bottom:16px;color:#111}
+.about-text .ap{font-size:16px;color:#666;line-height:2;margin-bottom:20px}
+.about-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.acard{background:#f8f9fb;border-radius:12px;padding:18px 20px;transition:all .3s}
+.acard:hover{transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,0,0,.06)}
+.acard .acard-t{font-size:15px;font-weight:600;color:#111;margin-bottom:4px}
+.acard .acard-d{font-size:13px;color:#999}
+
+/* BANNER */
+.banner{position:relative;overflow:hidden;background:#0a0e1a}
+.banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.18}
+.banner .sec{position:relative;z-index:1;text-align:center;padding-top:60px;padding-bottom:60px}
+.bnr-row{display:flex;align-items:center;justify-content:space-around;flex-wrap:wrap;gap:30px}
+.bnr-num{font-size:clamp(36px,5vw,52px);font-weight:700;color:#fff;line-height:1}
+.bnr-num em{font-size:22px;color:#d4bc8b;margin-left:4px;font-style:normal}
+.bnr-label{font-size:15px;color:rgba(255,255,255,.45);margin-top:8px}
+.bnr-q{margin-top:30px;font-size:17px;color:rgba(255,255,255,.4);font-style:italic}
+
+/* CARDS (services/cases/news) */
+.card-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:40px}
+@media(max-width:1024px){.card-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.card-grid{grid-template-columns:1fr}}
+.card-grid.w3{grid-template-columns:repeat(3,1fr)}
+@media(max-width:1024px){.card-grid.w3{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.card-grid.w3{grid-template-columns:1fr}}
+.card{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 2px 20px rgba(0,0,0,.04);transition:all .35s ease;display:flex;flex-direction:column}
+.card:hover{transform:translateY(-8px);box-shadow:0 16px 48px rgba(0,0,0,.1)}
+.card img{width:100%;display:block;transition:transform .5s ease}
+.card:hover img{transform:scale(1.08)}
+.card-body{padding:22px 24px;flex:1;display:flex;flex-direction:column}
+.card-body h4{font-size:17px;font-weight:600;color:#111;margin-bottom:6px}
+.card-body .cd{font-size:14px;color:#888;line-height:1.8;flex:1}
+.card-body .tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px}
+.tags span{padding:4px 10px;background:#f5f5f5;border-radius:6px;font-size:12px;color:#666}
+.case-tag{display:inline-block;padding:4px 10px;background:#e5efff;color:#0a5fff;font-size:12px;font-weight:600;border-radius:6px;margin-bottom:8px;align-self:flex-start}
+.case-result{margin-top:12px;padding-top:12px;border-top:1px solid #eee;font-size:20px;font-weight:700;color:#b8975a}
+
+/* SECTIONS BG */
+.bg-white{background:#fff}
+.bg-light{background:#f8f9fb}
+
+/* CONTACT */
+.contact{background:#0a0e1a;position:relative;overflow:hidden}
+.contact::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(10,95,255,.06),transparent 60%),radial-gradient(ellipse at 70% 50%,rgba(184,151,90,.04),transparent 60%);pointer-events:none}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;position:relative;z-index:1}
+@media(max-width:1024px){.contact-grid{grid-template-columns:1fr;gap:30px}}
+.contact h2,.contact .sec-sub{color:#fff}
+.contact .sec-sub{color:rgba(255,255,255,.5)}
+.ci-card{display:flex;align-items:flex-start;gap:12px;padding:16px 18px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:12px;transition:all .3s;margin-bottom:10px}
+.ci-card:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12);transform:translateX(6px)}
+.ci-icon{width:40px;height:40px;border-radius:8px;background:rgba(184,151,90,.15);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.ci-text h6{font-size:13px;color:rgba(255,255,255,.45);margin-bottom:2px;font-weight:400}
+.ci-text div{font-size:15px;color:#fff;font-weight:500}
+.c-form{background:#fff;border-radius:18px;padding:35px;display:flex;flex-direction:column;gap:14px;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+.c-form h5{font-size:20px;font-weight:600;color:#111;margin-bottom:6px}
+.c-form input,.c-form textarea{width:100%;padding:13px 16px;background:#f5f6f8;border:1.5px solid #eee;border-radius:10px;font-size:15px;color:#333;font-family:inherit;transition:border-color .3s;outline:none}
+.c-form input:focus,.c-form textarea:focus{border-color:#0a5fff}
+.c-form textarea{min-height:110px;resize:vertical}
+.c-form .submit-btn{width:100%;height:50px;background:linear-gradient(135deg,#0a5fff,#3b8bff);border:none;border-radius:100px;color:#fff;font-size:16px;font-weight:500;cursor:pointer;transition:all .3s}
+.c-form .submit-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(10,95,255,.3)}
+
+/* FOOTER */
+footer{background:#060a12;display:flex;justify-content:center;align-items:center;gap:24px;padding:16px 60px;font-size:13px;color:rgba(255,255,255,.25);flex-wrap:wrap;text-align:center}
+footer .fa{color:rgba(255,255,255,.18);font-size:12px}
+
+/* ANIMATIONS */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.stagger>*{opacity:0;transform:translateY(40px);transition:all .6s ease}
+.stagger.visible>:nth-child(1){transition-delay:0s;opacity:1;transform:translateY(0)}
+.stagger.visible>:nth-child(2){transition-delay:.1s;opacity:1;transform:translateY(0)}
+.stagger.visible>:nth-child(3){transition-delay:.2s;opacity:1;transform:translateY(0)}
+.stagger.visible>:nth-child(4){transition-delay:.3s;opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<nav class="transparent" id="nav">
+  <a href="#" class="logo"><em>艾</em>艾德知识产权</a>
+  <ul class="nl">
+    <li><a href="#home">首页</a></li>
+    <li><a href="#about">关于我们</a></li>
+    <li><a href="#services">产品服务</a></li>
+    <li><a href="#cases">客户案例</a></li>
+    <li><a href="#news">新闻动态</a></li>
+    <li><a href="#contact">联系我们</a></li>
+    <li><a href="#" class="nt">内部培训</a></li>
+  </ul>
+  <a href="#contact" class="cta-btn">免费咨询</a>
+  <button class="mt"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=85" alt="" loading="eager"></div>
+  <div class="hero-content">
+    <h2>让每一家制造企业<br>拥有专业级企业服务保障</h2>
+    <h3>深耕知识产权 · 专注制造业服务</h3>
+    <a href="#contact" class="start-btn">预约免费咨询 <span class="ar">&#8594;</span></a>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-bar reveal">
+  <div class="sb-inner">
+    <div class="sb-item"><div class="sb-num" data-target="500">0<em>+</em></div><div class="sb-label">累计服务客户</div></div>
+    <div class="sb-item"><div class="sb-num" data-target="99">0<em>%</em></div><div class="sb-label">项目申报通过率</div></div>
+    <div class="sb-item"><div class="sb-num" data-target="4">0</div><div class="sb-label">专注制造行业板块</div></div>
+    <div class="sb-item"><div class="sb-num" data-target="2000">0<em>+</em></div><div class="sb-label">年服务项目量</div></div>
+  </div>
+</section>
+
+<!-- SERVICES ACCORDION -->
+<div class="ac-wrap reveal" id="services">
+  <div class="st"><h2>四大核心服务板块</h2><p>覆盖企业全生命周期关键需求，每个板块都经过制造业场景深度打磨</p></div>
+  <div class="ac">
+    <div class="ac-item open" style="background-image:url(https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80)">
+      <div class="ac-t">知识产权</div>
+      <div class="ac-d">从专利布局到商标保护，从版权登记到知产贯标，为企业提供全生命周期的知识产权管理与维权支持。</div>
+    </div>
+    <div class="ac-item" style="background-image:url(https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&q=80)">
+      <div class="ac-t">项目申报</div>
+      <div class="ac-d">精准把握政策风向，量身定制最优申报策略，从材料准备到评审答辩全程跟进，确保最高通过率。</div>
+    </div>
+    <div class="ac-item" style="background-image:url(https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80)">
+      <div class="ac-t">AI 增效</div>
+      <div class="ac-d">将前沿AI技术落地到制造业场景——智能内容生成、数据洞察分析、流程自动化，让技术真正为企业增效。</div>
+    </div>
+    <div class="ac-item" style="background-image:url(https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80)">
+      <div class="ac-t">综合服务</div>
+      <div class="ac-d">宣传推广、资质办理、财税咨询、法律顾问对接等一站式配套服务，助力企业全面发展。</div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about" class="bg-white">
+  <div class="sec">
+    <div class="about-grid">
+      <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80" alt="" class="reveal" loading="lazy">
+      <div class="about-text reveal">
+        <h3>理念与承诺</h3>
+        <p class="ap">我们是一群90后。没有耀眼的头衔，没有大佬坐镇。但我们深耕制造业服务领域多年，用一次又一次的完美交付赢得了客户的信赖。真正的专业不在墙上挂的证书，而在每一次交付到客户手中的成果。</p>
+        <div class="about-cards stagger">
+          <div class="acard"><div class="acard-t">&#x26A1; 快速响应</div><div class="acard-d">平均响应时间不到2小时</div></div>
+          <div class="acard"><div class="acard-t">&#x1F3AF; 精准匹配</div><div class="acard-d">政策匹配准确率行业领先</div></div>
+          <div class="acard"><div class="acard-t">&#x1F4AA; 全程跟进</div><div class="acard-d">从方案到落地全程管控</div></div>
+          <div class="acard"><div class="acard-t">&#x1F516; 诚信保密</div><div class="acard-d">严格保护客户商业信息安全</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BANNER -->
+<section class="banner reveal">
+  <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1400&q=80" alt="" loading="lazy">
+  <div class="sec">
+    <div class="bnr-row">
+      <div><div class="bnr-num">500<em>+</em></div><div class="bnr-label">累计服务制造业客户</div></div>
+      <div><div class="bnr-num">100<em>%</em></div><div class="bnr-label">项目申报通过率承诺</div></div>
+      <div><div class="bnr-num">4<em>大</em></div><div class="bnr-label">制造行业深度覆盖</div></div>
+    </div>
+    <p class="bnr-q">"每一次交付都是对信任的回应，每一个数字背后都是用心在做。"</p>
+  </div>
+</section>
+
+<!-- CASES -->
+<section id="cases" class="bg-white">
+  <div class="sec">
+    <div class="st reveal"><h2>信任来自每一次成功交付</h2><p>部分脱敏案例展示，覆盖四大制造业领域</p></div>
+    <div class="card-grid stagger">
+      <div class="card"><img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=500&q=80" alt="" loading="lazy"><div class="card-body"><span class="case-tag">电气行业</span><h4>某电气设备制造企业</h4><p class="cd">完成发明专利12项、实用新型28项系统性专利布局，辅助通过高企认定。</p><div class="case-result">100% 通过率</div></div></div>
+      <div class="card"><img src="https://images.unsplash.com/photo-1580674684081-7617fbf3d745?w=500&q=80" alt="" loading="lazy"><div class="card-body"><span class="case-tag">汽摩配行业</span><h4>某汽车零部件集团</h4><p class="cd">三年持续服务，累计申报技改补贴、专精特新等项目超20项，获批资金逾800万。</p><div class="case-result">100% 通过率</div></div></div>
+      <div class="card"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&q=80" alt="" loading="lazy"><div class="card-body"><span class="case-tag">五金制造</span><h4>某精密五金加工企业</h4><p class="cd">商标全类注册+外观专利组合，帮助企业成功阻击3起侵权，挽回损失超200万。</p><div class="case-result">100% 通过率</div></div></div>
+      <div class="card"><img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=500&q=80" alt="" loading="lazy"><div class="card-body"><span class="case-tag">鞋服行业</span><h4>某品牌鞋业公司</h4><p class="cd">从零搭建知产保护体系，2年内完成商标45类全覆盖+核心外观专利群+版权登记。</p><div class="case-result">100% 通过率</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS -->
+<section id="news" class="bg-light">
+  <div class="sec">
+    <div class="st reveal"><h2>行业洞察与公司动态</h2></div>
+    <div class="card-grid w3 stagger">
+      <div class="card"><img src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=600&q=80" alt="" loading="lazy"><div class="card-body"><p style="font-size:13px;color:#bbb;margin-bottom:6px">2026-05-20</p><h4>2026年度高新技术企业申报政策解读</h4><p class="cd">今年高企认定标准有哪些新变化？企业需提前做好哪些准备？</p></div></div>
+      <div class="card"><img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&q=80" alt="" loading="lazy"><div class="card-body"><p style="font-size:13px;color:#bbb;margin-bottom:6px">2026-05-15</p><h4>艾德AI辅助申报系统上线内测</h4><p class="cd">全新AI工具将帮助企业更高效地完成申报材料准备与审核。</p></div></div>
+      <div class="card"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" alt="" loading="lazy"><div class="card-body"><p style="font-size:13px;color:#bbb;margin-bottom:6px">2026-05-08</p><h4>艾德获评市级优秀企业服务机构</h4><p class="cd">凭借卓越的服务质量和客户满意度，艾德再获行业认可。</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <div class="sec">
+    <div class="contact-grid">
+      <div class="reveal">
+        <h2 style="font-size:clamp(26px,3.5vw,38px);font-weight:600;color:#fff;line-height:1.2;margin-bottom:16px">开始无忧企业服务体验</h2>
+        <p class="sec-sub" style="margin-bottom:28px">无论您处于企业发展的哪个阶段，我们都提供最匹配的服务方案。顾问将在24小时内与您联系。</p>
+        <div class="ci-card"><div class="ci-icon">&#x1F4CD;</div><div class="ci-text"><h6>公司地址</h6><div>浙江省温州市瓯海区娄桥街道娄东大街787号吹台广场2幢2408室</div></div></div>
+        <div class="ci-card"><div class="ci-icon">&#x1F4DE;</div><div class="ci-text"><h6>联系电话</h6><div>15728041694</div></div></div>
+        <div class="ci-card"><div class="ci-icon">&#x2709;</div><div class="ci-text"><h6>电子邮箱</h6><div>358766227@qq.com</div></div></div>
+      </div>
+      <form class="c-form reveal" onsubmit="handleSubmit(event)">
+        <h5>快速咨询</h5>
+        <input type="text" placeholder="您的姓名" required>
+        <input type="text" placeholder="公司名称" required>
+        <input type="tel" placeholder="联系电话" required>
+        <textarea placeholder="请简要描述您的需求（如：专利申请、高企申报等）" required></textarea>
+        <button type="submit" class="submit-btn">提交咨询需求</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>&copy; 2026 温州市艾德知识产权服务有限公司</span>
+  <span class="fa">浙江省温州市瓯海区娄桥街道娄东大街787号吹台广场2幢2408室</span>
+</footer>
+
+<script>
+// Nav scroll
+const n=document.getElementById('nav');
+window.addEventListener('scroll',()=>{
+  n.classList.toggle('transparent',window.scrollY<60);
+  n.classList.toggle('scrolled',window.scrollY>=60);
+});
+
+// Accordion
+document.querySelectorAll('.ac-item').forEach(item=>{
+  item.addEventListener('click',()=>{
+    document.querySelectorAll('.ac-item').forEach(i=>i.classList.remove('open'));
+    item.classList.add('open');
+  });
+});
+
+// Reveal
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.reveal,.stagger').forEach(el=>obs.observe(el));
+
+// Counter
+const cObs=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(!entry.isIntersecting)return;const el=entry.target,t=parseInt(el.dataset.target),d=2000,s=performance.now();const em=el.querySelector('em');const eh=em?em.outerHTML:'';function upd(now){const p=Math.min((now-s)/d,1),e=1-Math.pow(1-p,3);el.innerHTML=Math.floor(e*t)+eh;if(p<1)requestAnimationFrame(upd);else el.innerHTML=t+eh;}requestAnimationFrame(upd);cObs.unobserve(el);});},{threshold:.5});
+document.querySelectorAll('.sb-num[data-target]').forEach(el=>cObs.observe(el));
+
+// Form
+function handleSubmit(e){e.preventDefault();const btn=e.target.querySelector('button'),orig=btn.textContent;btn.textContent='已收到，会尽快联系您！';btn.style.background='#0ea06a';setTimeout(()=>{btn.textContent=orig;btn.style.background='';e.target.reset();},3000);}
+</script>
+</body>
+</html>
